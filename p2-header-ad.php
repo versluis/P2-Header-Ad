@@ -59,7 +59,7 @@ function p2_header_ad_main  () {
 	?>
     <div class="wrap">
     <div id="icon-index" class="icon32"><br></div>
-<h2>P2 Header Ad</h2>
+<h2>P2 Header Advert</h2>
     
     <p>Enter some HTML in the box, and it will be displayed inside the P2 header</p>
     <p><em>imagine a box here where users can add a code snipped</em></p>
@@ -69,7 +69,14 @@ function p2_header_ad_main  () {
       <li>add save button</li>
       <li>save box content to database upon save</li>
     </ul>
-   
+    
+    <textarea name="p2HeaderCode" cols="80" rows="10" class="p2CodeBox"></textarea>
+    
+    <p>&nbsp; </p>
+    <p class="save-button-wrap">
+    <input type="submit" name="SaveChanges" class="button-primary" value="Save Changes" />
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="submit" name="SaveChanges" class="button-secondary" value="Use Sample Data" />
     
     
 	<?php
@@ -89,7 +96,7 @@ function p2_header_ad_main  () {
 function p2DisplayAdvert () {
 	
 	$p2HeaderCode = get_option ('p2HeaderCode');
-	echo '<div id="p2HeaderAd"><a href="http://www.versluis.com" target="_blank"><img style="border:0px" src="http://localhost/devplugins/wp-content/plugins/ps-header-ad/images/Header-Advert.png" width="468" height="60" alt=""></a></div>';
+	echo '<div id="p2HeaderAd"><a href="http://www.versluis.com" target="_blank"><img style="border:0px" src="http://localhost/devplugins/wp-content/plugins/p2-header-ad/images/Header-Advert.png" width="468" height="60" alt=""></a></div>';
 }
 add_action ('wp_head', 'p2DisplayAdvert');
 
