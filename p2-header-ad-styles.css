@@ -1,0 +1,25 @@
+/* P2 Header Ad Styles */
+
+#p2HeaderAd {
+	
+	/* works great when toll bar is displayed 
+	position:fixed;
+	top: 75px;
+	right: 10%;
+	*/
+	
+	
+	/* works great when no toolbar is displayed
+	position:fixed;
+	top: 50px;
+	right: 10%;
+	*/
+	
+	position:absolute;
+	top: 50px;
+	right: 10%;
+}
+
+.comment-reply-link {
+	display: none;
+}
