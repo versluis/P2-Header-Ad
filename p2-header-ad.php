@@ -55,7 +55,6 @@ function p2_header_ad_main  () {
 	
 	if (isset($_POST['SaveChanges'])) {
 		// save content of text box
-		// decode HTML characters first (opposite of textbox display)
 		update_option ('p2HeaderCode', stripslashes ($_POST['p2HeaderCode']));
 	}
 	
@@ -69,7 +68,6 @@ function p2_header_ad_main  () {
 	//////////////////////////////////
 	
 	$p2HeaderCode = get_option ('p2HeaderCode');
-
 
 	
 	///////////////////////////////////////
@@ -91,16 +89,7 @@ function p2_header_ad_main  () {
       <li>save box content to database upon save</li>
     </ul>
     <pre>
-    <textarea name="p2HeaderCode" cols="80" rows="10" class="p2CodeBox">
-    <?php 
-	// content of the text box goes here
-	// we can't print HTML, otherwise it is displayed
-	// instead we'll convert it first
-	echo $p2HeaderCode;
-	// $p2HeaderCode; 
-	
-	?>
-    </textarea></pre>
+    <textarea name="p2HeaderCode" cols="80" rows="10" class="p2CodeBox"><?php echo trim($p2HeaderCode); ?></textarea></pre>
     
     <p>&nbsp; </p>
     <p class="save-button-wrap">
