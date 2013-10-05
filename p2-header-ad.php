@@ -48,6 +48,27 @@ function p2_header_ad_main  () {
     {
       wp_die( __('You do not have sufficient privileges to access this page. Sorry!') );
     }	
+	
+	/////////////////////////////////////////////////////////////////////////////////////
+	// SAVING CHANGES
+	/////////////////////////////////////////////////////////////////////////////////////
+	
+	if (isset($_POST['SaveChanges'])) {
+		// save content of text box
+		update_option ('p2HeaderCode', $_POST['p2HeaderCode']);
+	}
+	
+	if (isset ($_POST['SampleData'])) {
+		// populate with sample data
+		update_option ('p2HeaderCode', '<div id="p2HeaderAd"><a href="http://www.versluis.com" target="_blank"><img style="border:0px" src="http://localhost/devplugins/wp-content/plugins/p2-header-ad/images/Header-Advert.png" width="468" height="60" alt=""></a></div>');
+	}
+	
+	//////////////////////////////////
+	// READ IN DATABASE OPTION
+	//////////////////////////////////
+	
+	$p2HeaderCode = get_option ('p2HeaderCode');
+
 
 	
 	///////////////////////////////////////
@@ -57,6 +78,7 @@ function p2_header_ad_main  () {
 	
 	// display heading with icon WP style
 	?>
+    <form name="p2HeaderAdForm" method="post" action="">
     <div class="wrap">
     <div id="icon-index" class="icon32"><br></div>
 <h2>P2 Header Advert</h2>
@@ -65,29 +87,30 @@ function p2_header_ad_main  () {
     <p><em>imagine a box here where users can add a code snipped</em></p>
     <p>Things to do:</p>
     <ul>
-      <li>add that box</li>
-      <li>add save button</li>
       <li>save box content to database upon save</li>
     </ul>
     
-    <textarea name="p2HeaderCode" cols="80" rows="10" class="p2CodeBox"></textarea>
+    <textarea name="p2HeaderCode" cols="80" rows="10" class="p2CodeBox">
+    <?php $p2HeaderCode; ?>
+    </textarea>
     
     <p>&nbsp; </p>
     <p class="save-button-wrap">
     <input type="submit" name="SaveChanges" class="button-primary" value="Save Changes" />
     &nbsp;&nbsp;&nbsp;&nbsp;
-    <input type="submit" name="SaveChanges" class="button-secondary" value="Use Sample Data" />
+    <input type="submit" name="SampleData" class="button-secondary" value="Use Sample Data" />
     
-    
-	<?php
-	// our code is inside a variable
-	$p2HeaderCode = '<div id="p2HeaderAd"><a href="http://www.elegantthemes.com/affiliates/idevaffiliate.php?id=6674_0_1_7" target="_blank"><img style="border:0px" src="http://www.elegantthemes.com/affiliates/banners/468x60.gif" width="468" height="60" alt=""></a></div>';
+    </form> 
+ 
+	<?php	
 	
-	// let's save this to the database
-	save_option ('p2HeaderCode', $p2HeaderCode);
+	/////////////
+	// TESTING
+	/////////////
 	
-	// now setup a hook inside the head
-	
+	// do we have the right value here?
+	echo 'Testing here... <br>';
+	echo get_option ('p2HeaderCode');
 	
 } // end of main function
 
