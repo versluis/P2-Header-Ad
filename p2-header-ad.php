@@ -55,7 +55,8 @@ function p2_header_ad_main  () {
 	
 	if (isset($_POST['SaveChanges'])) {
 		// save content of text box
-		update_option ('p2HeaderCode', $_POST['p2HeaderCode']);
+		// decode HTML characters first (opposite of textbox display)
+		update_option ('p2HeaderCode', stripslashes ($_POST['p2HeaderCode']));
 	}
 	
 	if (isset ($_POST['SampleData'])) {
@@ -89,10 +90,17 @@ function p2_header_ad_main  () {
     <ul>
       <li>save box content to database upon save</li>
     </ul>
-    
+    <pre>
     <textarea name="p2HeaderCode" cols="80" rows="10" class="p2CodeBox">
-    <?php $p2HeaderCode; ?>
-    </textarea>
+    <?php 
+	// content of the text box goes here
+	// we can't print HTML, otherwise it is displayed
+	// instead we'll convert it first
+	echo $p2HeaderCode;
+	// $p2HeaderCode; 
+	
+	?>
+    </textarea></pre>
     
     <p>&nbsp; </p>
     <p class="save-button-wrap">
@@ -119,7 +127,7 @@ function p2_header_ad_main  () {
 function p2DisplayAdvert () {
 	
 	$p2HeaderCode = get_option ('p2HeaderCode');
-	echo '<div id="p2HeaderAd"><a href="http://www.versluis.com" target="_blank"><img style="border:0px" src="http://localhost/devplugins/wp-content/plugins/p2-header-ad/images/Header-Advert.png" width="468" height="60" alt=""></a></div>';
+	echo $p2HeaderCode;
 }
 add_action ('wp_head', 'p2DisplayAdvert');
 
