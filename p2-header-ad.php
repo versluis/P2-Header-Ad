@@ -95,11 +95,7 @@ function p2_header_ad_main  () {
 <h2>P2 Header Advert</h2>
     
     <p>Enter some HTML in the box, and it will be displayed inside the P2 header.</p>
-    <p><em>This is </em></p>
-    <p>Things to do:</p>
-    <ul>
-      <li>present warning when not using P2 theme</li>
-    </ul>
+    <p><em>Optimised for a 468x60 pixel advert. Other sizes may need a small CSS adjustment.</em></p>
     <pre>
     <textarea name="p2HeaderCode" cols="80" rows="10" class="p2CodeBox"><?php echo trim($p2HeaderCode); ?></textarea></pre>
     
@@ -121,7 +117,23 @@ function p2_header_ad_main  () {
 	//////////////////
 	
 	echo get_option ('p2HeaderCode');
+
+	////////////////////////////////////////////////////////
+	// ADMIN FOOTER CONTENT
+	////////////////////////////////////////////////////////
+?>
+    <br><br>
+    <hr width="80%">
+    <br>    
+    <p><em>This plugin was brought to you by</em><br />
+    <a href="http://wpguru.co.uk" target="_blank"><img src="
+    <?php 
+    echo plugins_url('images/guru-header-2013.png', __FILE__);
+    ?>" width="300"></a>
+    </p>
+    <p><a href="http://wpguru.co.uk/2013/09/introducing-zen-dash/" target="_blank">Plugin by Jay Versluis</a> | <a href="http://wphosting.tv" target="_blank">WP Hosting</a> | <a href="http://wpguru.co.uk/say-thanks/" target="_blank">Buy me a Coffee</a> ;-)</p>
 	
+	<?php
 } // end of main function
 
 
