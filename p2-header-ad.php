@@ -159,7 +159,7 @@ add_action ('wp_head', 'p2DisplayAdvert');
 
 // populate database with sample code
 function p2_header_ad_sample_data () {
-	update_option ('p2HeaderCode', '<a href="http://wordpress.org" target="_blank"><img style="border:0px" src="' . plugins_url('images/guru-header-2013.png', __FILE__) . '" width="468" height="60" alt=""></a>');
+	update_option ('p2HeaderCode', '<a href="http://wordpress.org" target="_blank"><img style="border:0px" src="' . plugins_url('images/Header-Advert.png', __FILE__) . '" width="468" height="60" alt=""></a>');
 }
 
 // Put a "settings updated" message on the screen 
