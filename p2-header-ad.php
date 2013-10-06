@@ -123,7 +123,7 @@ function p2_header_ad_main  () {
 	////////////////////////////////////////////////////////
 ?>
     <br><br>
-    <hr width="80%">
+    <hr width="90%">
     <br>    
     <p><em>This plugin was brought to you by</em><br />
     <a href="http://wpguru.co.uk" target="_blank"><img src="
@@ -131,7 +131,7 @@ function p2_header_ad_main  () {
     echo plugins_url('images/guru-header-2013.png', __FILE__);
     ?>" width="300"></a>
     </p>
-    <p><a href="http://wpguru.co.uk/2013/09/introducing-zen-dash/" target="_blank">Plugin by Jay Versluis</a> | <a href="http://wphosting.tv" target="_blank">WP Hosting</a> | <a href="http://wpguru.co.uk/say-thanks/" target="_blank">Buy me a Coffee</a> ;-)</p>
+    <p><a href="http://wpguru.co.uk/2013/10/p2-header-advert/" target="_blank">Plugin by Jay Versluis</a> | <a href="http://wphosting.tv" target="_blank">WP Hosting</a> | <a href="http://wpguru.co.uk/say-thanks/" target="_blank">Buy me a Coffee</a> ;-)</p>
 	
 	<?php
 } // end of main function
