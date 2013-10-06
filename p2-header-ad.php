@@ -97,10 +97,10 @@ function p2_header_ad_main  () {
     <form name="p2HeaderAdForm" method="post" action="">
     <div class="wrap">
     <div id="icon-themes" class="icon32"><br></div>
-<h2>P2 Header Advert</h2>
+<h2>P2 Header Advertising</h2>
     
     <p>Enter some HTML in the box, and it will be displayed inside the P2 header.</p>
-    <p><em>Optimised for a 468x60 pixel advert. Other sizes may need a small CSS adjustment.</em></p>
+    <p><em>Optimised for a 468x60 pixel advert. Other sizes may need a small CSS adjustment, explained <a href="http://wpguru.co.uk/2013/10/p2-header-advert/" target="_blank">here</a>.</em></p>
     <pre>
     <textarea name="p2HeaderCode" cols="80" rows="10" class="p2CodeBox"><?php echo trim($p2HeaderCode); ?></textarea></pre>
     
