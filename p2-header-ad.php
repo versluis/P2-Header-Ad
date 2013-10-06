@@ -54,6 +54,11 @@ function p2_header_ad_main  () {
 		p2_header_ad_warning();
 	}
 	
+	// if we've not used this before, populate the database
+	if (get_option ('p2HeaderCode') == '') {
+		p2_header_ad_sample_data ();
+	}
+	
 	/////////////////////////////////////////////////////////////////////////////////////
 	// SAVING CHANGES
 	/////////////////////////////////////////////////////////////////////////////////////
@@ -68,7 +73,7 @@ function p2_header_ad_main  () {
 	
 	if (isset ($_POST['SampleData'])) {
 		// populate with sample data
-		update_option ('p2HeaderCode', '<a href="http://wpguru.co.uk" target="_blank"><img style="border:0px" src="http://localhost/devplugins/wp-content/plugins/p2-header-ad/images/Header-Advert.png" width="468" height="60" alt=""></a>');
+		p2_header_ad_sample_data ();
 		
 		// display settings saved message
 		p2_header_ad_settings_saved();
@@ -151,6 +156,11 @@ function p2DisplayAdvert () {
 	}
 }
 add_action ('wp_head', 'p2DisplayAdvert');
+
+// populate database with sample code
+function p2_header_ad_sample_data () {
+	update_option ('p2HeaderCode', '<a href="http://wpguru.co.uk" target="_blank"><img style="border:0px" src="http://localhost/devplugins/wp-content/plugins/p2-header-ad/images/Header-Advert.png" width="468" height="60" alt=""></a>');
+}
 
 // Put a "settings updated" message on the screen 
 function p2_header_ad_settings_saved () {
