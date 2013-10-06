@@ -51,8 +51,9 @@ function p2_header_ad_main  () {
 	
 	// check if we're actually using P2
 	if (!function_exists('p2_title')) {
-		
+		p2_header_ad_warning();
 	}
+	
 	/////////////////////////////////////////////////////////////////////////////////////
 	// SAVING CHANGES
 	/////////////////////////////////////////////////////////////////////////////////////
@@ -132,13 +133,15 @@ function p2DisplayAdvert () {
 	// add our own ID DIV for styling
 	$p2HeaderCode = '<div id="p2HeaderAd">' . $p2HeaderCode . '</div>';
 	
-	echo $p2HeaderCode;
+	// check if we're actually using P2
+	if (function_exists('p2_title')) {
+		echo $p2HeaderCode;
+	}
 }
 add_action ('wp_head', 'p2DisplayAdvert');
 
+// Put a "settings updated" message on the screen 
 function p2_header_ad_settings_saved () {
-	
-	// Put a "settings updated" message on the screen 
 	?>
     <div class="updated">
     <p><strong>Your settings have been saved.</strong></p>
@@ -146,6 +149,16 @@ function p2_header_ad_settings_saved () {
 	<?php
 } // end of settings saved
 
+// Put a warning message on the screen 
+function p2_header_ad_warning () {
+	?>
+    <div class="error">
+    <p><strong>You are not using the P2 Theme.<br>
+    Please activate it first, otherwise results are unpredictable!<br><br>
+    You can <a href="http://wordpress.org/themes/p2" target="_blank">download P2 from here</a>.</strong></p>
+    </div>
+	<?php
+} // end of settings saved
+
 
 ?>
-    </p>
