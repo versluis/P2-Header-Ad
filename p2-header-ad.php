@@ -155,7 +155,7 @@ function p2_header_ad_warning () {
     <div class="error">
     <p><strong>You are not using the P2 Theme.<br>
     Please activate it first, otherwise results are unpredictable!<br><br>
-    You can <a href="http://wordpress.org/themes/p2" target="_blank">download P2 from here</a>.</strong></p>
+    You can <a href="http://wordpress.org/themes/p2" target="_blank">download P2 here</a>. Or if you've already installed it, <a href="<?php echo admin_url( 'themes.php'); ?>">activate it here</a>.</strong></p>
     </div>
 	<?php
 } // end of settings saved
