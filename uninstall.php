@@ -1,5 +1,5 @@
 <?php
-// PLugin Starter uninstall script
+// P2 Header Ad uninstall script
 // deletes all database options when plugin is removed
 // @since 1.0
 // 
@@ -21,14 +21,7 @@ exit();
 if (!defined('WP_UNINSTALL_PLUGIN')) exit();
 
 // delete all options
-    delete_option ('zendash_widget1');
-	delete_option ('zendash_widget2');
-	delete_option ('zendash_widget3');
-	delete_option ('zendash_widget4');
-	delete_option ('zendash_widget5');
-	delete_option ('zendash_widget6');
-	delete_option ('zendash_widget7');
-	delete_option ('zendash_widget8');
+    delete_option ('p2HeaderCode');
 
 // Thanks for using this plugin
 // If you'd like to try again someday check out http://wpguru.co.uk where it lives and grows
