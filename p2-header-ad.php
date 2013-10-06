@@ -43,12 +43,16 @@ add_action('admin_menu', 'p2HeaderAd_menu');
 // here's the code for the actual admin page
 function p2_header_ad_main  () {
 	
-// check that the user has the required capability 
+	// check that the user has the required capability 
     if (!current_user_can('manage_options'))
     {
       wp_die( __('You do not have sufficient privileges to access this page. Sorry!') );
     }	
 	
+	// check if we're actually using P2
+	if (!function_exists('p2_title')) {
+		
+	}
 	/////////////////////////////////////////////////////////////////////////////////////
 	// SAVING CHANGES
 	/////////////////////////////////////////////////////////////////////////////////////
@@ -56,12 +60,19 @@ function p2_header_ad_main  () {
 	if (isset($_POST['SaveChanges'])) {
 		// save content of text box
 		update_option ('p2HeaderCode', stripslashes ($_POST['p2HeaderCode']));
+		
+		// display settings saved message
+		p2_header_ad_settings_saved();
 	}
 	
 	if (isset ($_POST['SampleData'])) {
 		// populate with sample data
-		update_option ('p2HeaderCode', '<div id="p2HeaderAd"><a href="http://www.versluis.com" target="_blank"><img style="border:0px" src="http://localhost/devplugins/wp-content/plugins/p2-header-ad/images/Header-Advert.png" width="468" height="60" alt=""></a></div>');
+		update_option ('p2HeaderCode', '<a href="http://wpguru.co.uk" target="_blank"><img style="border:0px" src="http://localhost/devplugins/wp-content/plugins/p2-header-ad/images/Header-Advert.png" width="468" height="60" alt=""></a>');
+		
+		// display settings saved message
+		p2_header_ad_settings_saved();
 	}
+	
 	
 	//////////////////////////////////
 	// READ IN DATABASE OPTION
@@ -79,14 +90,14 @@ function p2_header_ad_main  () {
 	?>
     <form name="p2HeaderAdForm" method="post" action="">
     <div class="wrap">
-    <div id="icon-index" class="icon32"><br></div>
+    <div id="icon-themes" class="icon32"><br></div>
 <h2>P2 Header Advert</h2>
     
-    <p>Enter some HTML in the box, and it will be displayed inside the P2 header</p>
-    <p><em>imagine a box here where users can add a code snipped</em></p>
+    <p>Enter some HTML in the box, and it will be displayed inside the P2 header.</p>
+    <p><em>This is </em></p>
     <p>Things to do:</p>
     <ul>
-      <li>save box content to database upon save</li>
+      <li>present warning when not using P2 theme</li>
     </ul>
     <pre>
     <textarea name="p2HeaderCode" cols="80" rows="10" class="p2CodeBox"><?php echo trim($p2HeaderCode); ?></textarea></pre>
@@ -97,29 +108,44 @@ function p2_header_ad_main  () {
     &nbsp;&nbsp;&nbsp;&nbsp;
     <input type="submit" name="SampleData" class="button-secondary" value="Use Sample Data" />
     
-    </form> 
- 
-	<?php	
+    </form>
+    <p>&nbsp;</p>
+<h2>Check it out</h2>
+<p>This is what your advert will look like:</p>
+    <p>
+  <?php	
 	
-	/////////////
-	// TESTING
-	/////////////
+	///////////////////
+	// DISPLAY PREVIEW
+	//////////////////
 	
-	// do we have the right value here?
-	echo 'Testing here... <br>';
 	echo get_option ('p2HeaderCode');
 	
 } // end of main function
 
 
-// hopefully displays the advert
+// display the advert
 function p2DisplayAdvert () {
 	
 	$p2HeaderCode = get_option ('p2HeaderCode');
+	
+	// add our own ID DIV for styling
+	$p2HeaderCode = '<div id="p2HeaderAd">' . $p2HeaderCode . '</div>';
+	
 	echo $p2HeaderCode;
 }
 add_action ('wp_head', 'p2DisplayAdvert');
 
+function p2_header_ad_settings_saved () {
+	
+	// Put a "settings updated" message on the screen 
+	?>
+    <div class="updated">
+    <p><strong>Your settings have been saved.</strong></p>
+    </div>
+	<?php
+} // end of settings saved
 
 
 ?>
+    </p>
