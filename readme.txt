@@ -1,4 +1,4 @@
-=== P2 Header ad ===
+=== P2 Header Ad ===
 Contributors: versluis
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=34B76TPRWMWAE
 Tags: p2, advert, ad, header, code
