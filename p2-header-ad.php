@@ -158,7 +158,6 @@ function p2_header_ad_main  () {
     </p>
     <p><a href="http://wpguru.co.uk/2013/10/p2-header-advert/" target="_blank">Plugin by Jay Versluis</a> | <a href="http://wphosting.tv" target="_blank">WP Hosting</a> | <a href="http://wpguru.co.uk/say-thanks/" target="_blank">Buy me a Coffee</a> ;-)</p>
 	<?php
-	echo 'Status: ' . get_option('p2HeaderAdDisplayOption');
 } // end of main function
 
 
