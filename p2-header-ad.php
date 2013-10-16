@@ -3,7 +3,7 @@
  * Plugin Name: P2 Header Ad
  * Plugin URI: http://wpguru.co.uk
  * Description: inserts a block of ad code into the P2 Theme's Header
- * Version: 1.0
+ * Version: 1.1
  * Author: Jay Versluis
  * Author URI: http://wpguru.co.uk
  * License: GPL2
@@ -58,6 +58,9 @@ function p2_header_ad_main  () {
 	if (get_option ('p2HeaderCode') == '') {
 		p2_header_ad_sample_data ();
 	}
+	if (get_option ('p2HeaderAdDisplayOption') == '') {
+	   p2_header_ad_display_option ();
+	   }
 	
 	/////////////////////////////////////////////////////////////////////////////////////
 	// SAVING CHANGES
@@ -66,6 +69,14 @@ function p2_header_ad_main  () {
 	if (isset($_POST['SaveChanges'])) {
 		// save content of text box
 		update_option ('p2HeaderCode', stripslashes ($_POST['p2HeaderCode']));
+		
+		// save option to disay ad for logged in users
+		if (isset($_POST['p2HeaderAdDisplayOption'])) {
+			update_option ('p2HeaderAdDisplayOption', 'yes');
+		} else {
+			update_option ('p2HeaderAdDisplayOption', 'no');
+		}
+		
 		
 		// display settings saved message
 		p2_header_ad_settings_saved();
@@ -85,7 +96,7 @@ function p2_header_ad_main  () {
 	//////////////////////////////////
 	
 	$p2HeaderCode = get_option ('p2HeaderCode');
-
+	$p2HeaderAdDisplayOption = get_option ('p2HeaderAdDisplayOption');
 	
 	///////////////////////////////////////
 	// MAIN AMDIN CONTENT SECTION
@@ -99,12 +110,21 @@ function p2_header_ad_main  () {
     <div id="icon-themes" class="icon32"><br></div>
 <h2>P2 Header Advertising</h2>
     
-    <p>Enter some HTML in the box, and it will be displayed inside the P2 header.</p>
+    <p><strong>Enter some HTML in the box, and it will be displayed inside the P2 header.</strong></p>
     <p><em>Optimised for a 468x60 pixel advert. Other sizes may need a small CSS adjustment, explained <a href="http://wpguru.co.uk/2013/10/p2-header-advert/" target="_blank">here</a>.</em></p>
     <pre>
     <textarea name="p2HeaderCode" cols="80" rows="10" class="p2CodeBox"><?php echo trim($p2HeaderCode); ?></textarea></pre>
     
-    <p>&nbsp; </p>
+    <?php 
+    // option to display ad for logged in users
+    // since @1.1
+    ?>
+    <p><strong>Would you like to display the ad for users that are logged in?</strong>&nbsp; 
+    <input type="checkbox" value="<?php $p2HeaderAdDisplayOption; ?>" name="p2HeaderAdDisplayOption" <?php if ($p2HeaderAdDisplayOption == 'yes') echo 'checked'; ?>/>
+    </p>
+    <p><em>Untick the box to show the ad only to visitors.</em></p>
+    
+    <br>
     <p class="save-button-wrap">
     <input type="submit" name="SaveChanges" class="button-primary" value="Save Changes" />
     &nbsp;&nbsp;&nbsp;&nbsp;
@@ -137,8 +157,8 @@ function p2_header_ad_main  () {
     ?>" width="300"></a>
     </p>
     <p><a href="http://wpguru.co.uk/2013/10/p2-header-advert/" target="_blank">Plugin by Jay Versluis</a> | <a href="http://wphosting.tv" target="_blank">WP Hosting</a> | <a href="http://wpguru.co.uk/say-thanks/" target="_blank">Buy me a Coffee</a> ;-)</p>
-	
 	<?php
+	echo 'Status: ' . get_option('p2HeaderAdDisplayOption');
 } // end of main function
 
 
@@ -146,11 +166,18 @@ function p2_header_ad_main  () {
 function p2DisplayAdvert () {
 	
 	$p2HeaderCode = get_option ('p2HeaderCode');
+	$p2HeaderLoggedIn = get_option ('p2HeaderAdDisplayOption');
 	
 	// add our own ID DIV for styling
 	$p2HeaderCode = '<div id="p2HeaderAd">' . $p2HeaderCode . '</div>';
 	
-	// check if we're actually using P2
+	// show ads to logged in users?
+	// since @1.1
+	if (is_user_logged_in () && $p2HeaderLoggedIn == 'no') {
+		$p2HeaderCode = '';
+	}
+	
+	// check if we're actually using P2, then display the code
 	if (function_exists('p2_title')) {
 		echo $p2HeaderCode;
 	}
@@ -160,6 +187,11 @@ add_action ('wp_head', 'p2DisplayAdvert');
 // populate database with sample code
 function p2_header_ad_sample_data () {
 	update_option ('p2HeaderCode', '<a href="http://wordpress.org" target="_blank"><img style="border:0px" src="' . plugins_url('images/Header-Advert.png', __FILE__) . '" width="468" height="60" alt=""></a>');
+}
+
+// populate database with default value for 'display to logged in users'
+function p2_header_ad_display_option () {
+    update_option ('p2HeaderAdDisplayOption', 'yes');
 }
 
 // Put a "settings updated" message on the screen 

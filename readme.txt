@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: p2, advert, ad, header, code
 Requires at least: 3.3
 Tested up to: 3.6.1
-Stable tag: 1.0
+Stable tag: 1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -36,7 +36,7 @@ Yes, it sits on top of your custom header graphic.
 
 = My ad looks a bit too high when I'm looged in - what gives? =
 
-This is a caveat: I can't "hook in" to P2's functions without hacking core files. Out of the box the ad will look nice when the tollbar on the front is not displayed. However when it is displayed, the advert will look a bit too high. You can add 25 pixels to its height to accomodate this, which means that your ad will look too low when the tollbar is not displayed. Adjust according to taste. If I find a way to rectify this, I will in a future update.
+This is a caveat: I can't "hook in" to P2's functions without hacking core files. Out of the box the ad will look nice when the tollbar on the front is not displayed. However when it is displayed, the advert will look a bit too high. You can add 25 pixels to its height to accomodate this, which means that your ad will look too low when the tollbar is not displayed. Adjust according to taste. If I find a way to rectify this, I will in a future update. You can also disable it when you're logged in.
 
 == Screenshots ==
 
@@ -45,6 +45,9 @@ This is a caveat: I can't "hook in" to P2's functions without hacking core files
 
 
 == Changelog ==
+
+= 1.1 =
+added option to remove the ad for logged-in users
 
 = 1.0 =
 Initial Release
