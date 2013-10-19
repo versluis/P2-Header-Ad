@@ -206,6 +206,12 @@ function p2DisplayAdvert () {
 	// add our own ID DIV for styling
 	$p2HeaderCode = '<div id="p2HeaderAd">' . $p2HeaderCode . '</div>';
 	
+	// don't display if we're in the admin interface
+	// since @1.2
+	if (is_admin()) {
+		$p2HeaderCode = '';
+	}
+	
 	// show ads to logged in users?
 	// since @1.1
 	if (is_user_logged_in () && $p2HeaderLoggedIn == 'no') {
