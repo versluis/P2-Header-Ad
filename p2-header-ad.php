@@ -203,8 +203,14 @@ function p2DisplayAdvert () {
 	$p2HeaderCode = get_option ('p2HeaderCode');
 	$p2HeaderLoggedIn = get_option ('p2HeaderAdDisplayOption');
 	
-	// add our own ID DIV for styling
-	$p2HeaderCode = '<div id="p2HeaderAd">' . $p2HeaderCode . '</div>';
+	// use different top style depending on custom header
+	if (get_header_image() == '') {
+		// if no header image is present
+		$p2HeaderCode = '<div id="p2HeaderAd" style="top: 45px">' . $p2HeaderCode . '</div>';
+	} else {
+		// if we have a header image
+		$p2HeaderCode = '<div id="p2HeaderAd" style="top: 30px">' . $p2HeaderCode . '</div>';
+	}
 	
 	// don't display if we're in the admin interface
 	// since @1.2
@@ -223,5 +229,5 @@ function p2DisplayAdvert () {
 		echo $p2HeaderCode;
 	}
 }
-add_action ('init', 'p2DisplayAdvert');
+add_action ('wp_head', 'p2DisplayAdvert');
 ?>
