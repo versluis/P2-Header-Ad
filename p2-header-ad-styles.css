@@ -2,6 +2,8 @@
 
 #p2HeaderAd {
 	
+	/* undisplayed initially, then shown via jQuery once correctly positioned */
+	visibility:hidden;
 	position:absolute;
 	top: 50px;
 	right: 0px;
