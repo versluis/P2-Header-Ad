@@ -2,30 +2,9 @@
 
 #p2HeaderAd {
 	
-	/* works great when toll bar is displayed 
-	position:fixed;
-	top: 75px;
-	right: 10%;
-	*/
-	
-	/* works great when no toolbar is displayed
-	position:fixed;
-	top: 50px;
-	right: 10%;
-	*/
-	
 	position:absolute;
 	top: 50px;
-	right: 15%;
+	right: 0px;
 	z-index:10;
 	
-}
-
-/* media queries */
-@media screen and (min-width: 321px) and (max-width: 980px) {
-    /* tablet styles go here */
-	#p2HeaderAd {
-		right: 20px;
-		
-	}
 }
