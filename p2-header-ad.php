@@ -161,28 +161,6 @@ function p2_header_ad_main  () {
 } // end of main function
 
 
-// display the advert
-function p2DisplayAdvert () {
-	
-	$p2HeaderCode = get_option ('p2HeaderCode');
-	$p2HeaderLoggedIn = get_option ('p2HeaderAdDisplayOption');
-	
-	// add our own ID DIV for styling
-	$p2HeaderCode = '<div id="p2HeaderAd">' . $p2HeaderCode . '</div>';
-	
-	// show ads to logged in users?
-	// since @1.1
-	if (is_user_logged_in () && $p2HeaderLoggedIn == 'no') {
-		$p2HeaderCode = '';
-	}
-	
-	// check if we're actually using P2, then display the code
-	if (function_exists('p2_title')) {
-		echo $p2HeaderCode;
-	}
-}
-add_action ('wp_head', 'p2DisplayAdvert');
-
 // populate database with sample code
 function p2_header_ad_sample_data () {
 	update_option ('p2HeaderCode', '<a href="http://wordpress.org" target="_blank"><img style="border:0px" src="' . plugins_url('images/Header-Advert.png', __FILE__) . '" width="468" height="60" alt=""></a>');
@@ -214,4 +192,30 @@ function p2_header_ad_warning () {
 } // end of settings saved
 
 
+// display the advert
+function p2DisplayAdvert () {
+	
+	// get our scripts ready
+	wp_enqueue_script ('jquery');
+	$p2HeaderScript = plugins_url ('p2-header-ad-script.js', __FILE__);
+	wp_enqueue_script ('p2-header-ad-script', $p2HeaderScript, '', '', true);
+	
+	$p2HeaderCode = get_option ('p2HeaderCode');
+	$p2HeaderLoggedIn = get_option ('p2HeaderAdDisplayOption');
+	
+	// add our own ID DIV for styling
+	$p2HeaderCode = '<div id="p2HeaderAd">' . $p2HeaderCode . '</div>';
+	
+	// show ads to logged in users?
+	// since @1.1
+	if (is_user_logged_in () && $p2HeaderLoggedIn == 'no') {
+		$p2HeaderCode = '';
+	}
+	
+	// check if we're actually using P2, then display the code
+	if (function_exists('p2_title')) {
+		echo $p2HeaderCode;
+	}
+}
+add_action ('init', 'p2DisplayAdvert');
 ?>
