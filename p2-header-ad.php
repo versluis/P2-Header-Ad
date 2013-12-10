@@ -3,10 +3,12 @@
  * Plugin Name: P2 Header Ad
  * Plugin URI: http://wpguru.co.uk
  * Description: inserts a block of ad code into the P2 Theme's Header
- * Version: 1.2
+ * Version: 1.3
  * Author: Jay Versluis
  * Author URI: http://wpguru.co.uk
  * License: GPL2
+ * Text Domain: p2-header-ad
+ * Domain Path: /languages
  */
  
 /*  Copyright 2013  Jay Versluis (email support@wpguru.co.uk)
@@ -29,14 +31,21 @@
 function p2HeaderAd_menu() {
 	
 	// using a wrapper function (easy, but not good for adding JS later - hence not used)
-	add_theme_page('P2 Header Ad', 'P2 Header Ad', 'administrator', 'p2HeaderAd', 'p2_header_ad_main');
+	add_theme_page('P2 Header Ad', 'P2 Header Ad', 'administrator', 'p2-header-ad', 'p2_header_ad_main');
 }
 add_action('admin_menu', 'p2HeaderAd_menu');
 
-// link some styles to the admin page
+// add a text domain - http://codex.wordpress.org/I18n_for_WordPress_Developers#I18n_for_theme_and_plugin_developers
+function p2HeaderAd_textdomain()
+{
+	load_plugin_textdomain('p2-header-ad', false, dirname(plugin_basename(__FILE__)) . '/languages/');
+	// load_plugin_textdomain('domain', false, dirname(plugin_basename(__FILE__)));
+}
+add_action('plugins_loaded', 'p2HeaderAd_textdomain');
 
-	$p2headeradstyles = plugins_url ('p2-header-ad-styles.css', __FILE__);
-	wp_enqueue_style ('p2headeradstyles', $p2headeradstyles );
+// link some styles to the admin page
+$p2headeradstyles = plugins_url ('p2-header-ad-styles.css', __FILE__);
+wp_enqueue_style ('p2headeradstyles', $p2headeradstyles );
 
 
 ////////////////////////////////////////////
@@ -108,10 +117,11 @@ function p2_header_ad_main  () {
     <form name="p2HeaderAdForm" method="post" action="">
     <div class="wrap">
     <div id="icon-themes" class="icon32"><br></div>
-<h2>P2 Header Advertising</h2>
+    <h2><?php _e('P2 Header Advertising', 'p2-header-ad'); ?></h2>
     
-    <p><strong>Enter some HTML in the box, and it will be displayed inside the P2 header.</strong></p>
-    <p><em>Optimised for a 468x60 pixel advert. Other sizes may need a small CSS adjustment, explained <a href="http://wpguru.co.uk/2013/10/p2-header-advert/" target="_blank">here</a>.</em></p>
+    <p><strong><?php _e('Enter some HTML in the box, and it will be displayed inside the P2 header.', 'p2-header-ad'); ?> </strong></p>
+    <p><em><?php _e('Optimised for a 468x60 pixel advert. Other sizes may need a small CSS adjustment.', 'p2-header-ad'); ?></em></p>
+    
     <pre>
     <textarea name="p2HeaderCode" cols="80" rows="10" class="p2CodeBox"><?php echo trim($p2HeaderCode); ?></textarea></pre>
     
@@ -119,21 +129,21 @@ function p2_header_ad_main  () {
     // option to display ad for logged in users
     // since @1.1
     ?>
-    <p><strong>Would you like to display the ad for users that are logged in?</strong>&nbsp; 
+    <p><strong><?php _e('Would you like to display the ad for users that are logged in?', 'p2-header-ad'); ?></strong>&nbsp; 
     <input type="checkbox" value="<?php $p2HeaderAdDisplayOption; ?>" name="p2HeaderAdDisplayOption" <?php if ($p2HeaderAdDisplayOption == 'yes') echo 'checked'; ?>/>
     </p>
-    <p><em>Untick the box to show the ad only to visitors.</em></p>
+    <p><em><?php _e('Untick the box to show the ad only to visitors.', 'p2-header-ad'); ?></em></p>
     
     <br>
     <p class="save-button-wrap">
-    <input type="submit" name="SaveChanges" class="button-primary" value="Save Changes" />
+    <input type="submit" name="SaveChanges" class="button-primary" value="<?php _e('Save Changes', 'p2-header-ad'); ?>" />
     &nbsp;&nbsp;&nbsp;&nbsp;
-    <input type="submit" name="SampleData" class="button-secondary" value="Use Sample Data" />
+    <input type="submit" name="SampleData" class="button-secondary" value="<?php _e('Use Sample Data', 'p2-header-ad'); ?>" />
     
     </form>
     <p>&nbsp;</p>
-<h2>Check it out</h2>
-<p>This is what your advert will look like:</p>
+<h2><?php _e('Check it out', 'p2-header-ad'); ?></h2>
+<p><?php _e('This is what your advert will look like:', 'p2-header-ad'); ?></p>
     <p>
   <?php	
 	
@@ -150,7 +160,7 @@ function p2_header_ad_main  () {
     <br><br>
     <hr width="90%">
     <br>    
-    <p><em>This plugin was brought to you by</em><br />
+    <p><em><?php _e('This plugin was brought to you by', 'p2-header-ad'); ?></em><br />
     <a href="http://wpguru.co.uk" target="_blank"><img src="
     <?php 
     echo plugins_url('images/guru-header-2013.png', __FILE__);
@@ -175,7 +185,7 @@ function p2_header_ad_display_option () {
 function p2_header_ad_settings_saved () {
 	?>
     <div class="updated">
-    <p><strong>Your settings have been saved.</strong></p>
+    <p><strong><?php _e('Your settings have been saved.', 'p2-header-ad'); ?></strong></p>
     </div>
 	<?php
 } // end of settings saved
@@ -184,9 +194,10 @@ function p2_header_ad_settings_saved () {
 function p2_header_ad_warning () {
 	?>
     <div class="error">
-    <p><strong>You are not using the P2 Theme.<br>
-    Please activate it first, otherwise results are unpredictable!<br><br>
-    You can <a href="http://wordpress.org/themes/p2" target="_blank">download P2 here</a>. Or if you've already installed it, <a href="<?php echo admin_url( 'themes.php'); ?>">activate it here</a>.</strong></p>
+    <p><strong><?php _e('You are not using the P2 Theme.', 'p2-header-ad'); ?><br>
+    <?php _e('Please activate it first, otherwise results are unpredictable!', 'p2-header-ad'); ?><br><br>
+    
+	<?php _e ('You can <a href="http://wordpress.org/themes/p2" target="_blank">download P2 here</a>. Or if you have already installed it,', 'p2-header-ad'); ?> <a href="<?php echo admin_url( 'themes.php'); ?>"><?php _e('activate it here', 'p2-header-ad'); ?></a>.</strong></p>
     </div>
 	<?php
 } // end of settings saved
