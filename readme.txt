@@ -3,8 +3,8 @@ Contributors: versluis
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=34B76TPRWMWAE
 Tags: p2, advert, ad, header, code
 Requires at least: 3.3
-Tested up to: 3.7.1
-Stable tag: 1.2
+Tested up to: 3.8
+Stable tag: 1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -46,6 +46,7 @@ Yes, it sits on top of your custom header graphic. It will adjust its height aut
 = 1.3 =
 added translation readiness
 added German Translation
+added Spanish Translation (thanks to Andrew Kurtis)
 
 = 1.2 =
 tweaked placement of advert: now it's fixed to the header
