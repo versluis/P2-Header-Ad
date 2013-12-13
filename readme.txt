@@ -44,16 +44,16 @@ Yes, it sits on top of your custom header graphic. It will adjust its height aut
 == Changelog ==
 
 = 1.3 =
-added translation readiness
-added German Translation
-added Spanish Translation (thanks to Andrew Kurtis)
+* added translation readiness
+* added German Translation
+* added Spanish Translation (thanks to Andrew Kurtis)
 
 = 1.2 =
-tweaked placement of advert: now it's fixed to the header
-added funky fade-in effect when the site loads
+* tweaked placement of advert: now it's fixed to the header
+* added funky fade-in effect when the site loads
 
 = 1.1 =
-added option to remove the ad for logged-in users
+* added option to remove the ad for logged-in users
 
 = 1.0 =
-Initial Release
+* initial Release
