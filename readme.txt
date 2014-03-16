@@ -3,7 +3,7 @@ Contributors: versluis
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=34B76TPRWMWAE
 Tags: p2, advert, ad, header, code
 Requires at least: 3.3
-Tested up to: 3.8
+Tested up to: 3.9
 Stable tag: 1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -44,16 +44,16 @@ Yes, it sits on top of your custom header graphic. It will adjust its height aut
 == Changelog ==
 
 = 1.3 =
-* added translation readiness
-* added German Translation
-* added Spanish Translation (thanks to Andrew Kurtis)
+1. added translation readiness
+1. added German Translation
+1. added Spanish Translation (thanks to Andrew Kurtis)
 
 = 1.2 =
-* tweaked placement of advert: now it's fixed to the header
-* added funky fade-in effect when the site loads
+1. tweaked placement of advert: now it's fixed to the header
+1. added funky fade-in effect when the site loads
 
 = 1.1 =
-* added option to remove the ad for logged-in users
+1. added option to remove the ad for logged-in users
 
 = 1.0 =
-* initial Release
+1. initial Release
