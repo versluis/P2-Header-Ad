@@ -3,7 +3,7 @@
  * Plugin Name: P2 Header Ad
  * Plugin URI: http://wpguru.co.uk
  * Description: inserts a block of ad code into the P2 Theme's Header
- * Version: 1.3
+ * Version: 1.4
  * Author: Jay Versluis
  * Author URI: http://wpguru.co.uk
  * License: GPL2
@@ -233,6 +233,14 @@ function p2DisplayAdvert () {
 	// since @1.1
 	if (is_user_logged_in () && $p2HeaderLoggedIn == 'no') {
 		$p2HeaderCode = '';
+	}
+	
+	// don't display code for logged in eMember users
+	// since @1.4
+	if (function_exists(wp_emember_is_member_logged_in)) {
+		if (wp_emember_is_member_logged_in() && $p2HeaderLoggedIn == 'no') {
+			$p2HeaderCode = '';
+		}
 	}
 	
 	// check if we're actually using P2, then display the code
