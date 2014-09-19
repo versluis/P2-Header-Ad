@@ -315,13 +315,13 @@ function p2Header_ads_after_posts($content) {
 	
 	// do we want ads on the front page?
 	if (is_home() && get_option('p2HeaderShowOnFrontPage') == 'yes') {
-		$content = $content . '<br>' . get_option('p2HeaderCode') . '<br>';
+		$content = $content . '<br><br>' . get_option('p2HeaderCode') . '<br><br>';
 		return $content;
 	}
 	
 	// show ad after content?
-	if (get_option('p2HeaderShowAfterContent') == 'yes' && !is_home()) {
-		$content = $content . '<br>' . get_option('p2HeaderCode') . '<br>';
+	if (get_option('p2HeaderShowAfterContent') == 'yes' && !is_home() && !is_page()) {
+		$content = $content . '<br><br>' . get_option('p2HeaderCode') . '<br><br>';
 		return $content;
 	}
 	
