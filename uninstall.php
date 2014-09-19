@@ -23,6 +23,9 @@ if (!defined('WP_UNINSTALL_PLUGIN')) exit();
 // delete all options
     delete_option ('p2HeaderCode');
 	delete_option ('p2HeaderAdDisplayOption');
+	delete_option ('p2HeaderShowAfterContent');
+	delete_option ('p2HeaderShowOnFrontpage');
+	delete_option ('p2HeaderPriority');
 
 // Thanks for using this plugin
 // If you'd like to try again someday check out http://wpguru.co.uk where it lives and grows
