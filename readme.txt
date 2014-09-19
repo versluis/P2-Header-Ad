@@ -44,7 +44,7 @@ Yes, it sits on top of your custom header graphic. It will adjust its height aut
 == Changelog ==
 
 = 1.4 =
-1. added the option to hide ad when users are logged into eMember
+1. added the option to hide ad when users are logged into eMember (plugin by Tips and Tricks HQ)
 
 = 1.3 =
 1. added translation readiness
