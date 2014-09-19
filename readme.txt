@@ -44,7 +44,8 @@ Yes, it sits on top of your custom header graphic. It will adjust its height aut
 == Changelog ==
 
 = 1.5 =
-1. added option to display the same ad at the end of the post
+1. added option to display the same ad at the end of single posts
+1. added option to hide ads at the end of front-page/blog-page posts
 
 = 1.4 =
 1. added the option to hide ad when users are logged into eMember (plugin by Tips and Tricks HQ)

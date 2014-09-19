@@ -156,7 +156,7 @@ function p2_header_ad_main  () {
     <p><strong><?php _e('Would you like to display the ad for users that are logged in?', 'p2-header-ad'); ?></strong>&nbsp; 
     <input type="checkbox" value="<?php $p2HeaderAdDisplayOption; ?>" name="p2HeaderAdDisplayOption" <?php if ($p2HeaderAdDisplayOption == 'yes') echo 'checked'; ?>/>
     </p>
-    <p><em><?php _e('Untick the box to show the ad only to visitors.', 'p2-header-ad'); ?></em></p>
+    <p><em><?php _e('Untick the box to show ads only to visitors.', 'p2-header-ad'); ?></em></p>
 
      <?php 
     // option to display ads after content
@@ -174,7 +174,7 @@ function p2_header_ad_main  () {
     <p><strong><?php _e('Display after-content-ad on the front page?', 'p2-header-ad'); ?></strong>&nbsp; 
     <input type="checkbox" value="<?php $p2HeaderShowOnFrontPage; ?>" name="p2HeaderShowOnFrontPage" <?php if ($p2HeaderShowOnFrontPage == 'yes') echo 'checked'; ?>/>
     </p>
-    <p><em><?php _e('Works best on longer posts.', 'p2-header-ad'); ?></em></p>
+    <p><em><?php _e('Works best with longer posts, but looks cluttered with short posts and status updates.', 'p2-header-ad'); ?></em></p>
     
     <br>
     <p class="save-button-wrap">
