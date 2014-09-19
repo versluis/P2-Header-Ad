@@ -153,7 +153,7 @@ function p2_header_ad_main  () {
     // option to display ad for logged in users
     // @since 1.1
     ?>
-    <p><strong><?php _e('Would you like to display the ad for users that are logged in?', 'p2-header-ad'); ?></strong>&nbsp; 
+    <p><strong><?php _e('Would you like to display the ad for users who are logged in?', 'p2-header-ad'); ?></strong>&nbsp; 
     <input type="checkbox" value="<?php $p2HeaderAdDisplayOption; ?>" name="p2HeaderAdDisplayOption" <?php if ($p2HeaderAdDisplayOption == 'yes') echo 'checked'; ?>/>
     </p>
     <p><em><?php _e('Untick the box to show ads only to visitors.', 'p2-header-ad'); ?></em></p>
@@ -296,33 +296,34 @@ add_action ('get_footer', 'p2DisplayAdvert');
 // adds the same advert underneath a single post
 function p2Header_ads_after_posts($content) {
 	
+	// we can either return $content (no advert) or $ad_content (with advert)
+	$ad_content = $content . '<br><br>' . get_option('p2HeaderCode') . '<br><br>';
+	
 	// do we want this option?
 	if (!get_option('p2HeaderShowAfterContent') || get_option('p2HeaderShowAfterContent') == 'no') {
 		return $content;
 	}
 	
 	// when user is logged in, do not display the ad
-	if (is_user_logged_in () && $p2HeaderLoggedIn == 'no') {
+	if (is_user_logged_in () && get_option('p2HeaderAdDisplayOption') == 'no') {
 		return $content;
 	}
 	
 	// the same goes for eMeber users
 	if (function_exists(wp_emember_is_member_logged_in)) {
-		if (wp_emember_is_member_logged_in() && $p2HeaderLoggedIn == 'no') {
+		if (wp_emember_is_member_logged_in() && get_option('p2HeaderAdDisplayOption') == 'no') {
 			return $content;
-		}
+		} 
 	}
 	
 	// do we want ads on the front page?
 	if (is_home() && get_option('p2HeaderShowOnFrontPage') == 'yes') {
-		$content = $content . '<br><br>' . get_option('p2HeaderCode') . '<br><br>';
-		return $content;
-	}
+		return $ad_content;
+	} 
 	
 	// show ad after content?
 	if (get_option('p2HeaderShowAfterContent') == 'yes' && !is_home() && !is_page()) {
-		$content = $content . '<br><br>' . get_option('p2HeaderCode') . '<br><br>';
-		return $content;
+		return $ad_content;
 	}
 	
 	// DEFAULT:
