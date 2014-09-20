@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: p2, advert, ad, header, code
 Requires at least: 3.3
 Tested up to: 4.0
-Stable tag: 1.4
+Stable tag: 1.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,7 +12,18 @@ Places a 468x80 pixel advert inside the header of Automattic's wonderful P2 Them
 
 == Description ==
 
-Places a 468x80 pixel advert inside the header of Automattic's wonderful P2 Theme. Other sizes will work but may require CSS tweaking. 
+Once installed, head over to Appearance - P2 Header Ad and paste your ad code into the box. 
+
+Features:
+
+* preview your ad in the admin interface (see screenshots)
+* option to hide the ad for logged-in users
+* option to hide the ad for logged-in WP eMember users
+* works with and without a header image
+* option to show the same ad after the post content
+
+I've optimised the plugin for a 468x80 pixel ad. Other sizes will work but may require your own CSS tweaks to make them look right.
+
 
 == Installation ==
 
@@ -25,14 +36,36 @@ Places a 468x80 pixel advert inside the header of Automattic's wonderful P2 Them
 
 == Frequently Asked Questions ==
 
-= I'm not using a 468x80 pixel advert. How do I tweak the CSS? =
+= I'm using a different ad size than 468x80 pixels. How do I tweak the CSS? =
  
 P2 Header Ad will wrap your code inside a DIV tag with the ID "p2HeaderAd". Simply re-position by targeting this ID.
+
 You can do this either in your Theme's styles.css file, or tweak p2-header-ad-styles.css inside the plugin's main directory.
+
 
 = Will this plugin work with a custom header graphic? =
 
 Yes, it sits on top of your custom header graphic. It will adjust its height automatically so it should always look nice.
+
+
+= I'm using Google Adsense ads, but they don't show up. What gives? =
+
+It takes about half an hour for fresh Google ads to appear. Until then you'll only see a blank space. Grab a coffee and check back a little later.
+
+
+= I'm showing ads on the front page after the post content - but now the header ad is gone. What's up with that? =
+
+Google ads can only be shown up to 5 times on a single page. If your front page shows 5 posts or more, then the ad can no longer be displayed in the header (which is called last for performance reasons).
+
+If you want to use the after-content-front-page-ad feature, and you want the header to show first, you can tweak line 293 of the main plugin file (p2-header-ad.php) from this
+
+add_action ('get_footer', 'p2DisplayAdvert');
+
+to
+
+add_action ('get_header', 'p2DisplayAdvert');
+
+I may make this an option in the admin interface in a future update.
 
 
 == Screenshots ==
