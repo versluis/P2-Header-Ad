@@ -3,7 +3,7 @@
  * Plugin Name: P2 Header Ad
  * Plugin URI: http://wpguru.co.uk
  * Description: inserts a block of ad code into the P2 Theme's Header
- * Version: 1.4
+ * Version: 1.5
  * Author: Jay Versluis
  * Author URI: http://wpguru.co.uk
  * License: GPL2
@@ -79,13 +79,34 @@ function p2_header_ad_main  () {
 		// save content of text box
 		update_option ('p2HeaderCode', stripslashes ($_POST['p2HeaderCode']));
 		
-		// save option to disay ad for logged in users
+		// save option to display ad for logged in users
 		if (isset($_POST['p2HeaderAdDisplayOption'])) {
 			update_option ('p2HeaderAdDisplayOption', 'yes');
 		} else {
 			update_option ('p2HeaderAdDisplayOption', 'no');
 		}
 		
+		// @since 1.5
+		// save option for ad after content
+		if (isset($_POST['p2HeaderShowAfterContent'])) {
+			update_option ('p2HeaderShowAfterContent', 'yes');
+		} else {
+			update_option ('p2HeaderShowAfterContent', 'no');
+		}
+		
+		// save option for ad on front page
+		if (isset($_POST['p2HeaderShowOnFrontPage'])) {
+			update_option ('p2HeaderShowOnFrontPage', 'yes');
+		} else {
+			update_option ('p2HeaderShowOnFrontPage', 'no');
+		}
+		
+		// save priority for ad after content
+		if (isset($_POST['p2HeaderPriority'])) {
+			update_option ('p2HeaderPriority', 'yes');
+		} else {
+			update_option ('p2HeaderPriority', '10');
+		}
 		
 		// display settings saved message
 		p2_header_ad_settings_saved();
@@ -106,6 +127,9 @@ function p2_header_ad_main  () {
 	
 	$p2HeaderCode = get_option ('p2HeaderCode');
 	$p2HeaderAdDisplayOption = get_option ('p2HeaderAdDisplayOption');
+	$p2HeaderShowAfterContent = get_option('p2HeaderShowAfterContent');
+	$p2HeaderShowOnFrontPage = get_option('p2HeaderShowOnFrontPage');
+	$p2HeaderPriority = get_option('p2HeaderPriority');
 	
 	///////////////////////////////////////
 	// MAIN AMDIN CONTENT SECTION
@@ -127,12 +151,30 @@ function p2_header_ad_main  () {
     
     <?php 
     // option to display ad for logged in users
-    // since @1.1
+    // @since 1.1
     ?>
-    <p><strong><?php _e('Would you like to display the ad for users that are logged in?', 'p2-header-ad'); ?></strong>&nbsp; 
+    <p><strong><?php _e('Would you like to display the ad for users who are logged in?', 'p2-header-ad'); ?></strong>&nbsp; 
     <input type="checkbox" value="<?php $p2HeaderAdDisplayOption; ?>" name="p2HeaderAdDisplayOption" <?php if ($p2HeaderAdDisplayOption == 'yes') echo 'checked'; ?>/>
     </p>
-    <p><em><?php _e('Untick the box to show the ad only to visitors.', 'p2-header-ad'); ?></em></p>
+    <p><em><?php _e('Untick the box to show ads only to visitors.', 'p2-header-ad'); ?></em></p>
+
+     <?php 
+    // option to display ads after content
+    // @since 1.5
+    ?>
+    <br><p><strong><?php _e('Display the same ad after the post content?', 'p2-header-ad'); ?></strong>&nbsp; 
+    <input type="checkbox" value="<?php $p2HeaderShowAfterContent; ?>" name="p2HeaderShowAfterContent" <?php if ($p2HeaderShowAfterContent == 'yes') echo 'checked'; ?>/>
+    </p>
+    <p><em><?php _e('', 'p2-header-ad'); ?></em></p>
+    
+    <?php 
+    // display ads after content on front page
+    // @since 1.5
+    ?>
+    <p><strong><?php _e('Display after-content-ad on the front page?', 'p2-header-ad'); ?></strong>&nbsp; 
+    <input type="checkbox" value="<?php $p2HeaderShowOnFrontPage; ?>" name="p2HeaderShowOnFrontPage" <?php if ($p2HeaderShowOnFrontPage == 'yes') echo 'checked'; ?>/>
+    </p>
+    <p><em><?php _e('Works best with longer posts, but looks cluttered with short posts and status updates.', 'p2-header-ad'); ?></em></p>
     
     <br>
     <p class="save-button-wrap">
@@ -166,7 +208,7 @@ function p2_header_ad_main  () {
     echo plugins_url('images/guru-header-2013.png', __FILE__);
     ?>" width="300"></a>
     </p>
-    <p><a href="http://wpguru.co.uk/2013/10/p2-header-advert/" target="_blank">Plugin by Jay Versluis</a> | <a href="http://wphosting.tv" target="_blank">WP Hosting</a> | <a href="http://wpguru.co.uk/say-thanks/" target="_blank">Buy me a Coffee</a> ;-)</p>
+    <p><a href="http://wpguru.co.uk/2013/10/p2-header-advert/" target="_blank">Plugin by Jay Versluis</a> | <a href="https://github.com/versluis/P2-Header-Ad" target="_blank">Fork me on GitHub</a> | <a href="http://wphosting.tv" target="_blank">WP Hosting</a></p>
 	<?php
 } // end of main function
 
@@ -249,4 +291,47 @@ function p2DisplayAdvert () {
 	}
 }
 add_action ('get_footer', 'p2DisplayAdvert');
+
+// @since 1.5
+// adds the same advert underneath a single post
+function p2Header_ads_after_posts($content) {
+	
+	// we can either return $content (no advert) or $ad_content (with advert)
+	$ad_content = $content . '<br><br>' . get_option('p2HeaderCode') . '<br><br>';
+	
+	// do we want this option?
+	if (!get_option('p2HeaderShowAfterContent') || get_option('p2HeaderShowAfterContent') == 'no') {
+		return $content;
+	}
+	
+	// when user is logged in, do not display the ad
+	if (is_user_logged_in () && get_option('p2HeaderAdDisplayOption') == 'no') {
+		return $content;
+	}
+	
+	// the same goes for eMeber users
+	if (function_exists(wp_emember_is_member_logged_in)) {
+		if (wp_emember_is_member_logged_in() && get_option('p2HeaderAdDisplayOption') == 'no') {
+			return $content;
+		} 
+	}
+	
+	// do we want ads on the front page?
+	if (is_home() && get_option('p2HeaderShowOnFrontPage') == 'yes') {
+		return $ad_content;
+	} 
+	
+	// show ad after content?
+	if (get_option('p2HeaderShowAfterContent') == 'yes' && !is_home() && !is_page()) {
+		return $ad_content;
+	}
+	
+	// DEFAULT:
+	// none of the above were true - just return the content
+	return $content;
+}
+
+// add filter to the_content
+add_filter ('the_content', 'p2Header_ads_after_posts', 10);
+
 ?>
