@@ -37,8 +37,8 @@ Yes, it sits on top of your custom header graphic. It will adjust its height aut
 
 == Screenshots ==
 
-1. the Admin Interface let's you paste HTML code quick and easy (under Appearance - P2 Header ad)
 1. see your ad displayed on the P2 front page
+1. the Admin Interface let's you paste HTML code quickly and easily (under Appearance - P2 Header ad)
 
 
 == Changelog ==
