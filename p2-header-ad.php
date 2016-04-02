@@ -279,7 +279,7 @@ function p2DisplayAdvert () {
 	
 	// don't display code for logged in eMember users
 	// since @1.4
-	if (function_exists(wp_emember_is_member_logged_in)) {
+	if (function_exists('wp_emember_is_member_logged_in')) {
 		if (wp_emember_is_member_logged_in() && $p2HeaderLoggedIn == 'no') {
 			$p2HeaderCode = '';
 		}
