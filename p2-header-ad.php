@@ -3,7 +3,7 @@
  * Plugin Name: P2 Header Ad
  * Plugin URI: http://wpguru.co.uk
  * Description: inserts a block of ad code into the P2 Theme's Header
- * Version: 1.5
+ * Version: 1.6 Beta
  * Author: Jay Versluis
  * Author URI: http://wpguru.co.uk
  * License: GPL2
@@ -43,14 +43,14 @@ function p2HeaderAd_textdomain()
 }
 add_action('plugins_loaded', 'p2HeaderAd_textdomain');
 
-// link some styles to the admin page
-$p2headeradstyles = plugins_url ('p2-header-ad-styles.css', __FILE__);
-wp_enqueue_style ('p2headeradstyles', $p2headeradstyles );
-
 
 ////////////////////////////////////////////
 // here's the code for the actual admin page
 function p2_header_ad_main  () {
+
+	// link some styles to the admin page
+	$p2headeradstyles = plugins_url ('p2-header-ad-styles.css', __FILE__);
+	wp_enqueue_style ('p2headeradstyles', $p2headeradstyles );
 	
 	// check that the user has the required capability 
     if (!current_user_can('manage_options'))
