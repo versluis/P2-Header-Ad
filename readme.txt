@@ -3,8 +3,8 @@ Contributors: versluis
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=34B76TPRWMWAE
 Tags: p2, advert, ad, header, code
 Requires at least: 3.3
-Tested up to: 4.0
-Stable tag: 1.5
+Tested up to: 4.5
+Stable tag: 1.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -75,6 +75,10 @@ I may make this an option in the admin interface in a future update.
 
 
 == Changelog ==
+
+= 1.6 =
+1. styles are now loaded via wp_enqueue_scripts hook
+1. fixed a debug warning that assumed a constant rather than a value
 
 = 1.5 =
 1. added option to display the same ad at the end of single posts
