@@ -1,17 +1,17 @@
 <?php
 /**
  * Plugin Name: P2 Header Ad
- * Plugin URI: http://wpguru.co.uk
+ * Plugin URI: https://wpguru.co.uk
  * Description: inserts a block of ad code into the P2 Theme's Header
- * Version: 1.6
+ * Version: 1.7
  * Author: Jay Versluis
- * Author URI: http://wpguru.co.uk
+ * Author URI: https://wpguru.co.uk
  * License: GPL2
  * Text Domain: p2-header-ad
  * Domain Path: /languages
  */
  
-/*  Copyright 2013  Jay Versluis (email support@wpguru.co.uk)
+/*  Copyright 2013-2018  Jay Versluis (email support@wpguru.co.uk)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License, version 2, as 
