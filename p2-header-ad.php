@@ -310,7 +310,7 @@ function p2Header_ads_after_posts($content) {
 	}
 	
 	// the same goes for eMeber users
-	if (function_exists(wp_emember_is_member_logged_in)) {
+	if (function_exists(wp_emember_is_member_logged_in())) {
 		if (wp_emember_is_member_logged_in() && get_option('p2HeaderAdDisplayOption') == 'no') {
 			return $content;
 		} 
